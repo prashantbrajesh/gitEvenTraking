@@ -1,0 +1,66 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<configuration>-->
+    <!--<springProfile name="!prod">-->
+        <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+        <!--<include resource="org/springframework/boot/logging/logback/defaults.xml" />-->
+        <!--<logger name="com.brajesh.cab"  level="INFO"/>-->
+            <!--<logger name="org.springframework" level="INFO"/>-->
+            <!--<logger name="org.springframework.data.elasticsearch" level="INFO"/>-->
+            <!--<logger name="javax.ws.rs" level="INFO"/>-->
+            <!--<logger name="com.netflix.discovery" level="OFF"/>-->
+            <!--<logger name="org.springframework.data.mongodb.core.MongoTemplate" level="ERROR"/>-->
+            <!--<logger name="com.netflix.hystrix" level="INFO"/>-->
+            <!--<logger name="org.springframework.transaction.interceptor" level="INFO"/>-->
+            <!--<logger name="org.springframework.cache" level="INFO"/>-->
+            <!--<logger name="org.springframework.jdbc" level="ERROR"/>-->
+    <!--</springProfile>-->
+    <!--<springProfile name="prod">-->
+            <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+            <!--<include resource="org/springframework/boot/logging/logback/defaults.xml" />-->
+            <!--<logger name="com.brajesh.cab" level="info"/>-->
+            <!--<logger name="org.springframework" level="WARN"/>-->
+            <!--<logger name="javax.ws.rs" level="INFO"/>-->
+            <!--<logger name="com.netflix.hystrix" level="INFO"/>-->
+            <!--<logger name="org.springframework.transaction.interceptor" level="INFO"/>-->
+            <!--<logger name="org.springframework.cache" level="INFO"/>-->
+            <!--<logger name="org.springframework.jdbc" level="ERROR"/>-->
+    <!--</springProfile>-->
+
+    <!--<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+        <!--<encoder>-->
+            <!--<pattern>%date %X{HOMESERVICES-REQUEST-ID} [%thread] %level  %logger{15} [%L] - %msg %rEx%n</pattern> </encoder>-->
+    <!--</appender>-->
+
+    <!--<appender name="HOME" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--<file>/var/log/nobroker/homeService/homeService.log</file>-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+            <!--&lt;!&ndash; Hourly rollover &ndash;&gt;-->
+            <!--<fileNamePattern>/var/log/nobroker/homeService/homeService_.%d{yyyy-MM-dd-HH}.log.gz</fileNamePattern>-->
+
+            <!--&lt;!&ndash; keep 100 hours' worth of history &ndash;&gt;-->
+            <!--<maxHistory>100</maxHistory>-->
+        <!--</rollingPolicy>-->
+        <!--<encoder class="net.logstash.logback.encoder.LogstashEncoder">-->
+            <!--<includeMdcKeyName>HOMESERVICES-REQUEST-ID</includeMdcKeyName>-->
+            <!--<includeMdcKeyName>HOMESERVICES-REQUEST-USER</includeMdcKeyName>-->
+        <!--</encoder>-->
+        <!--&lt;!&ndash;<encoder>&ndash;&gt;-->
+            <!--&lt;!&ndash;<pattern>%date %X{HOMESERVICES-REQUEST-ID} [%thread] %level  %logger{15} [%L] - %msg %rEx%n</pattern>&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash; this quadruples logging throughput &ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;<immediateFlush>true</immediateFlush>&ndash;&gt;-->
+        <!--&lt;!&ndash;</encoder>&ndash;&gt;-->
+    <!--</appender>-->
+
+    <!--<appender name="ASYNC500" class="ch.qos.logback.classic.AsyncAppender">-->
+        <!--<queueSize>500</queueSize>-->
+        <!--<discardingThreshold>0</discardingThreshold>-->
+        <!--<appender-ref ref="HOME" />-->
+        <!--<includeCallerData>true</includeCallerData>-->
+    <!--</appender>-->
+    <!--<root>-->
+        <!--<appender-ref ref="ASYNC500" />-->
+        <!--<appender-ref ref="STDOUT" />-->
+    <!--</root>-->
+
+<!--</configuration>-->
+
